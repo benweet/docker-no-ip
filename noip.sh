@@ -1,38 +1,17 @@
 #!/bin/bash
 
-# Search for custom config file, if it doesn't exist, copy the default one
-if [ ! -f /config/noip.conf ]; then
-  echo "Creating config file. Please do not forget to enter your info in noip.conf."
-  cp /root/noip/noip.conf /config/noip.conf
-  chmod a+w /config/noip.conf
-  exit 1
-fi
-
-tr -d '\r' < /config/noip.conf > /tmp/noip.conf
-
-. /tmp/noip.conf
-
 if [ -z "$DOMAINS" ]; then
-  echo "DOMAINS must be defined in noip.conf"
-  exit 1
-elif [ "$DOMAINS" = "foo.ddns.net" ]; then
-  echo "Please enter your domain in noip.conf"
+  echo "DOMAINS must be defined"
   exit 1
 fi
 
 if [ -z "$USERNAME" ]; then
-  echo "USERNAME must be defined in noip.conf"
-  exit 1
-elif [ "$USERNAME" = 'email@example.com' ]; then
-  echo "Please enter your username in noip.conf"
+  echo "USERNAME must be defined"
   exit 1
 fi
 
 if [ -z "$PASSWORD" ]; then
-  echo "PASSWORD must be defined in noip.conf"
-  exit 1
-elif [ "$PASSWORD" = "your password here" ]; then
-  echo "Please enter your password in noip.conf"
+  echo "PASSWORD must be defined"
   exit 1
 fi
 
